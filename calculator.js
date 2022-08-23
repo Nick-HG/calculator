@@ -16,4 +16,7 @@ function divide(a, b) {
     return a / b;
 }
 
+function operate(num1, operator, num2) {
+    
+}
 
