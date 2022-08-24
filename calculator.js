@@ -1,5 +1,8 @@
 const output = document.querySelector('#output');
 const equal = document.querySelector('#calculator .equal');
+const numButtons = document.querySelectorAll('#calculator .number');
+const operator = document.querySelectorAll('#calculator .operation');
+const total = document.querySelector('.equal')
 let firstNum = 0;
 let operation = null;
 let resetAfterOperation = false;
@@ -7,7 +10,7 @@ let resetAfterOperation = false;
 
 
 // Functions for basic arithmetic: add, subtract, multiply, and divide
-function add(a, b) {
+function sum(a, b) {
     return a + b;
 }
 
@@ -24,9 +27,9 @@ function divide(a, b) {
 }
 
 // prints number to populate display
-document.querySelectorAll('#calculator .number').forEach(button => {
-    button.addEventListener('click', event => {
-        let value = event.currentTarget.textContent;
+numButtons.forEach(button => {
+    button.addEventListener('click', (e) => {
+        let value = e.currentTarget.textContent;
         if(resetAfterOperation) {
             output.value = value;
             resetAfterOperation = false;
@@ -37,9 +40,9 @@ document.querySelectorAll('#calculator .number').forEach(button => {
 })
 
 // registers operator clicked but maintains firstNum as the number displayed
-document.querySelectorAll('#calculator .operation').forEach(button => {
+operator.forEach(button => {
     button.addEventListener('click', event => {
-        firstNum = output.value;
+        firstNum = Number.parseInt(output.value);
         operation = event.currentTarget.dataset.action;
         resetAfterOperation = true;  
     })
@@ -49,12 +52,12 @@ document.querySelectorAll('#calculator .operation').forEach(button => {
 
 
  
-equal.addEventListener('click', () => {
+total.addEventListener('click', () => {
     if (!operation) {
         return;
     }
     resetAfterOperation = true;
-    let secondNum = output.value
+    let secondNum = Number.parseInt(output.value) 
     
     if (operation === 'sum') {
         output.value = sum(firstNum, secondNum)
@@ -66,19 +69,10 @@ equal.addEventListener('click', () => {
         output.value = multiply(firstNum, secondNum)
     }
     else if (operation === 'divide') {
-        output.value = divide(firstNum, secondNum)
+        output.value = divide(firstNum, secondNum).toFixed(5)
     }
+    
     // reset operation
     operation = null;
 })
 
-
-// function clear() {
-//     const clearBtn = document.querySelector('.clear');
-//     clearBtn.addEventListener('click', () => {
-//         window.location.reload();
-//     });
-//     const clearInput = document.getElementById('output');
-//     clearInput.innerText = 'none';
-// }
-// clear();  // this works whilst <input> does not include 'readonnly'
