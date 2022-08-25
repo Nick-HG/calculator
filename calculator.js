@@ -1,6 +1,6 @@
 const output = document.querySelector('#output');
 const equal = document.querySelector('#calculator .equal');
-const numButtons = document.querySelectorAll('#calculator .number');
+const number = document.querySelectorAll('#calculator .number');
 const operator = document.querySelectorAll('#calculator .operation');
 const total = document.querySelector('.equal')
 let firstNum = 0;
@@ -27,8 +27,8 @@ function divide(a, b) {
 }
 
 // prints number to populate display
-numButtons.forEach(button => {
-    button.addEventListener('click', (e) => {
+number.forEach((numBtn) => {
+    numBtn.addEventListener('click', (e) => {
         let value = e.currentTarget.textContent;
         if(resetAfterOperation) {
             output.value = value;
@@ -39,14 +39,16 @@ numButtons.forEach(button => {
     })
 })
 
+
 // registers operator clicked but maintains firstNum as the number displayed
-operator.forEach(button => {
-    button.addEventListener('click', event => {
+operator.forEach((opBtn) => {
+    opBtn.addEventListener('click', (e) => {
         firstNum = Number.parseInt(output.value);
-        operation = event.currentTarget.dataset.action;
+        operation = e.currentTarget.dataset.action;
         resetAfterOperation = true;  
     })
 })
+
 /* if resetAfterOperation false the operator 'click' is still listened,
  but the display doesn't move to secondNum, it populates on top of firstNum */
 
@@ -70,8 +72,7 @@ total.addEventListener('click', () => {
     }
     else if (operation === 'divide') {
         output.value = divide(firstNum, secondNum).toFixed(5)
-    }
-    
+    }  
     // reset operation
     operation = null;
 })

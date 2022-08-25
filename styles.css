@@ -1,15 +1,46 @@
+body {
+    font-family: 'Courier New', Courier, monospace;
+    margin-top: 50px;
+}
+
+.navbar {
+    text-align: center;
+    font-size: 24px;
+}
+
 .container {
+    margin: auto;
     width: 500px;
     height: 500px;
     background-color: lightgray;
-    /* margin: 0;
-    padding: 0; */
+    border-radius: 5%;
+    border: 5px solid darkgrey;
+}
+
+.operation {
+    background-color: grey;
+    color: #fff;
+}
+
+.number, .number-zero {
+    background-color: rgba(209, 227, 227, 0.8);
+}
+
+.clear {
+    background-color: rgb(198, 53, 53);
+    font-weight: bold;
+    border: 2px solid black;
+    border-radius: 5%;
+    padding: 20px;
+    font-size: 25px;
+    text-align: center;
 }
 
 #output {
     padding: 20px;
     margin: 15px;
     font-size: 25px;
+    border: 2px solid black;
 }
 
 #calculator {
@@ -21,9 +52,8 @@
 }
 
 #calculator > button {
-    border: 1px solid black;
+    border: 2px solid black;
     border-radius: 5%;
-    background-color: rgba(209, 227, 227, 0.8);
     padding: 20px;
     font-size: 25px;
     text-align: center;
